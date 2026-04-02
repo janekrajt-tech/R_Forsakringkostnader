@@ -46,3 +46,36 @@ data_clean$annual_checkups <- as.integer(data_clean$annual_checkups)
 glimpse(data_clean)
 
 
+data_clean <- data_clean |>
+  mutate(age_group = 
+           case_when(
+             age <= 30  ~ "young",
+             age > 30 & age <= 50  ~ "middle",
+             age > 50   ~ "older"
+           )
+  )
+#Skapat age_group för att förenkla jamförelser mellan åldersgrupper
+
+data_clean <- data_clean |>
+  mutate(risk_score = as.numeric(smoker) + 
+           as.numeric(chronic_condition) + 
+           prior_claims)
+
+#Kombination av flera risk faktorer som skapar en risk_score. Fler risker - högre
+
+min(data_clean$risk_score, na.rm = TRUE)
+max(data_clean$risk_score, na.rm = TRUE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
