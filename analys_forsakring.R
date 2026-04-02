@@ -12,7 +12,7 @@ colSums(is.na(data))
 
 summary(data)
 
-# smoker och chronic_condition kan ändras till TRUE/FALSE
+# smoker och chronic_condition kan ändras till logical
 data_clean <- data |>
   filter(!is.na(bmi), !is.na(annual_checkups)) |>
   mutate(smoker = trimws(tolower(smoker))) |>
@@ -37,8 +37,12 @@ data_clean <- data_clean |>
 
 prop.table(table(data_clean$chronic_condition))
 
-#Fixat chronic_condition så den är true/false ist
+#Fixat chronic_condition så den är logical ist
 
 data_clean$annual_checkups <- as.integer(data_clean$annual_checkups)
 
+#Ändrat datatyp på annual_checkups till int 
+
 glimpse(data_clean)
+
+
