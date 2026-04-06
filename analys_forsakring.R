@@ -46,7 +46,7 @@ data_clean$annual_checkups <- as.integer(data_clean$annual_checkups)
 glimpse(data_clean)
 
 
-data_clean <- data_clean |>
+data_clean <- data_clean %>% 
   mutate(age_group = 
            case_when(
              age <= 30  ~ "young",
@@ -66,16 +66,138 @@ data_clean <- data_clean |>
 min(data_clean$risk_score, na.rm = TRUE)
 max(data_clean$risk_score, na.rm = TRUE)
 
+check_alter <- function(data, col) {
+  data %>%
+    count({{ col }}, sort = TRUE)
+}
+#Funkionen kollar de olika svarsalternativ i kolumnen, ifall något inte stämmer
+check_alter(data_clean, region)
+
+data_clean <- data_clean %>%
+  mutate(exercise_level = ifelse(trimws(exercise_level) == "", "missing", exercise_level))
+
+data_clean <- data_clean %>% 
+ mutate(region = clean_text_col(region))
+
+cat_col_in_data_clean <- names(data_clean)[
+  sapply(data_clean, is.character)  &
+  names(data_clean) != "customer_id"]
+# Alla kategoriska kolumner som ska checkas om allt stämmer
+
+for (col in cat_col_in_data_clean) {
+  cat("\n---", col, "---\n")
+  print(check_alter(data_clean, !!sym(col)))
+}
+# En loop som gör det enklare att kolla alla kategoriska kolumner på en gång 
+data_clean <- data_clean %>% 
+  mutate(plan_type = clean_text_col(plan_type))
+
+#En final check efter ändringarna 
+for (col in cat_col_in_data_clean) {
+  cat("\n---", col, "---\n")
+  print(check_alter(data_clean, !!sym(col)))
+}
+
+glimpse(data_clean)
+
+data_clean <- data_clean %>%
+  mutate(across(c(sex, region, smoker, chronic_condition,
+                  exercise_level, plan_type, age_group), as.factor))
+
+#Ändrat alla char till factor kolumner 
+
+glimpse(data_clean)
+
+ggplot(data_clean, aes(x = region)) +
+  geom_bar() +
+  labs(
+    title = "Antal kunder per region",
+    x = "Region",
+    y = "Antal"
+  )
+ggplot(data_clean, aes(x = age_group)) +
+  geom_bar() +
+  labs(
+    title = "Antal kunder per åldersgrupp",
+    x = "Åldersgrupp",
+    y = "Antal"
+  )
+
+ggplot(data_clean, aes(x = plan_type)) +
+  geom_bar() +
+  labs(
+    title = "Antal kunder per plantyp",
+    x = "Plantyp",
+    y = "Antal"
+  )
+
+data_clean %>%
+  count(region, risk_score) %>%
+  group_by(region) %>%
+  mutate(prop = n / sum(n)) %>%
+  ggplot(aes(x = region, y = prop, fill = factor(risk_score))) +
+  geom_bar(stat = "identity") +
+  geom_text(
+    aes(label = scales::percent(prop, accuracy = 1)),
+    position = position_stack(vjust = 0.5),
+    size = 3
+  ) +
+  theme_minimal()
+
+data_clean %>%
+  group_by(region) %>%
+  summarise(mean_risk = mean(risk_score, na.rm = TRUE))
+
+ggplot(data_clean, aes(x = charges)) +
+  geom_histogram() +
+  labs(
+    title = "Histogram for charges",
+    x = "charges"
+  )
+ggplot(data_clean, aes(x = charges, y = age, colour = smoker)) + 
+  geom_point() +
+  labs(
+    title = "Charges vs age",
+    x = "charges",
+    y = "age"
+  )
+
+ggplot(data_clean, aes(x = charges, y = bmi, colour = age_group)) + 
+  geom_point() +
+  labs(
+    title = "Charges vs bmi",
+    x = "bmi",
+    y = "age"
+  )
+
+data_clean %>%
+  group_by(sex) %>%
+  summarise(mean_charges = mean(charges, na.rm = TRUE)) %>%
+  arrange(desc(mean_charges))
+
+data_clean %>%
+  group_by(region) %>%
+  summarise(mean_charges = mean(charges, na.rm = TRUE)) %>%
+  arrange(desc(mean_charges))
+
+data_clean %>%
+  group_by(age_group) %>%
+  summarise(mean_charges = mean(charges, na.rm = TRUE)) %>%
+  arrange(desc(mean_charges))
 
 
+data_clean %>%
+  group_by(plan_type) %>%
+  summarise(mean_charges = mean(charges, na.rm = TRUE)) %>%
+  arrange(desc(mean_charges))
 
-
-
-
-
-
-
-
+ggplot(data_clean, aes( x = age_group, y = charges)) +
+  geom_boxplot() +
+  labs(
+    title = "Boxplot Age Group vs Charges",
+    x = "Age Group",
+    y = "Charges"
+  )
 
 
 
