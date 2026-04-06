@@ -3,8 +3,6 @@ library(tidyverse)
 data <- read.csv("insurance_costs.csv")
 
 glimpse(data)
-nrow(data)
-ncol(data)
 
 colSums(is.na(data))
 
@@ -92,11 +90,6 @@ for (col in cat_col_in_data_clean) {
 data_clean <- data_clean %>% 
   mutate(plan_type = clean_text_col(plan_type))
 
-#En final check efter ändringarna 
-for (col in cat_col_in_data_clean) {
-  cat("\n---", col, "---\n")
-  print(check_alter(data_clean, !!sym(col)))
-}
 
 glimpse(data_clean)
 
@@ -123,13 +116,6 @@ ggplot(data_clean, aes(x = age_group)) +
     y = "Antal"
   )
 
-ggplot(data_clean, aes(x = plan_type)) +
-  geom_bar() +
-  labs(
-    title = "Antal kunder per plantyp",
-    x = "Plantyp",
-    y = "Antal"
-  )
 
 data_clean %>%
   count(region, risk_score) %>%
@@ -144,9 +130,6 @@ data_clean %>%
   ) +
   theme_minimal()
 
-data_clean %>%
-  group_by(region) %>%
-  summarise(mean_risk = mean(risk_score, na.rm = TRUE))
 
 ggplot(data_clean, aes(x = charges)) +
   geom_histogram() +
