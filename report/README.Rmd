@@ -45,3 +45,7 @@ source("scripts/04_model.R")
 
 Grafer, tabeller och regressionsresultat som visar samband mellan
 variabler och kostnader.
+
+## Paket
+
+Tidyverse

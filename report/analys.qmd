@@ -3,10 +3,66 @@ title: "analys"
 format: html
 ---
 
-
 ```{r}
 source("../scripts/01_load_data.R")
 source("../scripts/02_data_clean.R")
 source("../scripts/03_analysis.R")
 source("../scripts/04_model.R")
 ```
+
+## Syfte
+
+Syftet med analysen är att undersöka vilka variabler som verkar hänga ihop med försäkringskostnaderna mest.
+
+## Metod
+
+Analysen baseras på ett dataset med information om individer, inklusive ålder, BMI, rökning och hälsotillstånd Datan städades genom att hantera saknade värden och omkoda variabler till lämpliga datatyper. Nya variabler skapades, såsom åldersgrupper och ett riskmått baserat på flera faktorer. En beskrivande analys genomfördes med hjälp av statistiska sammanfattningar och visualiseringar för att identifiera mönster i datan. Slutligen användes en linjär regressionsmodell för att analysera vilka variabler som påverkar försäkringskostnader.
+
+## Resultat
+
+```{r}
+p_charges_hist
+```
+
+Histogram över charges visar
+
+```{r}
+p_charges_vs_age
+```
+
+Det finns ett positivt samband mellan ålder och försäkringskostnader, där äldre individer tenderar att ha högre kostnader än yngre.
+
+```{r}
+p_charges_bmi
+```
+
+Högre BMI verkar vara kopplat till högre kostnader, men sambandet är inte lika tydligt som för ålder och det finns stor spridning i datan.
+
+```{r}
+smoker_charges_boxplot
+```
+
+Rökare har betydligt högre försäkringskostnader än icke-rökare. Skillnaden är stor både i median och spridning, vilket tyder på att rökning är en stark riskfaktor.
+
+```{r}
+p_agegroup_charges_hist
+```
+
+Äldre åldersgrupper har generellt högre kostnader än yngre grupper, vilket stärker sambandet mellan ålder och försäkringskostnader.
+
+```{r}
+mean_charges_region
+mean_charges_sex
+```
+
+Tabllerna visar mean charges per region och kön. Det finns inga tydliga skillnader i både regionerna och i kön, vilket tyder på att geografiskt region eller kön inte har en stor påverkan på försäkringkostnader.
+
+## Sammanfattning till Resultat
+
+Resultat tyder på att variabler som rökning, bmi och ålder är särskilt interessanta för vidare undersökning i regressionsanalysen.
+
+## Regressionanalys
+
+## Slutsatser
+
+## Begränsningar

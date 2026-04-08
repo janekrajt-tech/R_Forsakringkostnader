@@ -14,12 +14,12 @@ p_agegroup_q <- ggplot(data_clean, aes(x = age_group)) +
   )
 
 p_charges_hist <- ggplot(data_clean, aes(x = charges)) +
-  geom_histogram() +
+  geom_histogram(binwidth = 1000) +
   labs(
     title = "Histogram for charges",
     x = "charges"
   )
-p_charges_vs_age <- ggplot(data_clean, aes(x = charges, y = age, colour = smoker)) + 
+p_charges_vs_age <- ggplot(data_clean, aes(x = charges, y = age, colour = age_group)) + 
   geom_point() +
   labs(
     title = "Charges vs age",
@@ -27,12 +27,12 @@ p_charges_vs_age <- ggplot(data_clean, aes(x = charges, y = age, colour = smoker
     y = "age"
   )
 
-p_charges_bmi <- ggplot(data_clean, aes(x = charges, y = bmi, colour = age_group)) + 
+p_charges_bmi <- ggplot(data_clean, aes(x = charges, y = bmi)) + 
   geom_point() +
   labs(
     title = "Charges vs bmi",
-    x = "bmi",
-    y = "age"
+    x = "charges",
+    y = "bmi"
   )
 
 mean_charges_sex <- data_clean %>%
@@ -63,22 +63,38 @@ p_agegroup_charges_hist <- ggplot(data_clean, aes( x = age_group, y = charges)) 
     x = "Age Group",
     y = "Charges"
   )
-ggsave("../output/figures/p_customers_q.png", p_customers_q)
-ggsave("../output/figures/p_agegroup_q.png", p_agegroup_q)
-ggsave("../output/figures/p_charges_hist.png", p_charges_hist)
-ggsave("../output/figures/p_charges_vs_age.png", p_charges_vs_age)
-ggsave("../output/figures/p_charges_bmi.png", p_charges_bmi)
-ggsave("../output/figures/p_agegroup_charges_hist.png", p_agegroup_charges_hist)
+
+mean_charges_smoker <- data_clean %>%
+  group_by(smoker) %>%
+  summarise(mean_charges = mean(charges, na.rm = TRUE)) %>% 
+  arrange(desc(mean_charges))
+
+smoker_charges_boxplot <- ggplot(data_clean, aes(x = smoker, y= charges)) +
+  geom_boxplot() +
+  labs(
+    title = "Boxplot över charges för rökare och ickerökare",
+    x = "Smoker",
+    y = "Charges"
+      )
+
+ggsave("output/figures/p_customers_q.png", p_customers_q)
+ggsave("output/figures/p_agegroup_q.png", p_agegroup_q)
+ggsave("output/figures/p_charges_hist.png", p_charges_hist)
+ggsave("output/figures/p_charges_vs_age.png", p_charges_vs_age)
+ggsave("output/figures/p_charges_bmi.png", p_charges_bmi)
+ggsave("output/figures/p_agegroup_charges_hist.png", p_agegroup_charges_hist)
 print(p_customers_q)
 print(p_agegroup_q)
-print(p_charges_vs_age)
-print(p_charges_hist)
-print(p_charges_bmi)
-print(p_agegroup_charges_hist)
 print(mean_charges_agegroup)
 print(mean_charges_plantype)
 print(mean_charges_region)
 print(mean_charges_sex)
+print(mean_charges_smoker)
+print(p_charges_vs_age)
+print(p_charges_hist)
+print(p_charges_bmi)
+print(p_agegroup_charges_hist)
+print(smoker_charges_boxplot)
 
 
 
