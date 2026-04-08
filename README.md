@@ -1,11 +1,3 @@
----
-title: "README"
-output: html_document
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 ## Försäkringskostnader – Analys Beskrivning
 
 Projektet analyserar vilka faktorer som påverkar försäkringskostnader
