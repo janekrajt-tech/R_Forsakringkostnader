@@ -57,9 +57,21 @@ mean_charges_sex
 
 Tabllerna visar mean charges per region och kön. Det finns inga tydliga skillnader i både regionerna och i kön, vilket tyder på att geografiskt region eller kön inte har en stor påverkan på försäkringkostnader.
 
+```{r}
+p_prior_claims_charges
+```
+
+Antal tidigare claims tenderar att ha påverkan på charges.
+
+```{r}
+p_charges_chronic
+```
+
+Kunder som har kronisk sjukdom har tydligt större försäkringskostnader än de utan.
+
 ## Sammanfattning till Resultat
 
-Resultat tyder på att variabler som rökning, bmi och ålder är särskilt interessanta för vidare undersökning i regressionsanalysen.
+Resultat tyder på att variabler som rökning, bmi, ålder samt tidigare claims och kronisk sjukdom är särskilt interessanta för vidare undersökning i regressionsanalysen.
 
 ## Regressionanalys
 

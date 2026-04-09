@@ -16,8 +16,9 @@ p_agegroup_q <- ggplot(data_clean, aes(x = age_group)) +
 p_charges_hist <- ggplot(data_clean, aes(x = charges)) +
   geom_histogram(binwidth = 1000) +
   labs(
-    title = "Histogram for charges",
-    x = "charges"
+    title = "Histogram över charges",
+    x = "charges",
+    y = "Antal"
   )
 p_charges_vs_age <- ggplot(data_clean, aes(x = charges, y = age, colour = age_group)) + 
   geom_point() +
@@ -31,8 +32,8 @@ p_charges_bmi <- ggplot(data_clean, aes(x = charges, y = bmi)) +
   geom_point() +
   labs(
     title = "Charges vs bmi",
-    x = "charges",
-    y = "bmi"
+    x = "Charges",
+    y = "Bmi"
   )
 
 mean_charges_sex <- data_clean %>%
@@ -59,8 +60,8 @@ mean_charges_plantype <- data_clean %>%
 p_agegroup_charges_hist <- ggplot(data_clean, aes( x = age_group, y = charges)) +
   geom_boxplot() +
   labs(
-    title = "Boxplot Age Group vs Charges",
-    x = "Age Group",
+    title = "Boxplot Åldersgrupp vs Charges",
+    x = "Åldersgrupp",
     y = "Charges"
   )
 
@@ -73,9 +74,24 @@ smoker_charges_boxplot <- ggplot(data_clean, aes(x = smoker, y= charges)) +
   geom_boxplot() +
   labs(
     title = "Boxplot över charges för rökare och ickerökare",
-    x = "Smoker",
+    x = "Rökare",
     y = "Charges"
       )
+
+p_charges_chronic <- ggplot(data_clean, aes(x = chronic_condition, y = charges)) +
+  geom_boxplot() +
+  labs(
+    title = "Boxplot över kronisk sjukdom",
+    x = "Kronisk Sjukdom",
+    y = "Charges"
+  )
+p_prior_claims_charges <- ggplot(data_clean, aes(x = factor(prior_claims), y = charges))  +
+  geom_boxplot() +
+  labs(
+    title = "Boxplot för tidigare claims", 
+    x = "Antal tidigare claims",
+    y = "Charges"
+  )
 
 ggsave("output/figures/p_customers_q.png", p_customers_q)
 ggsave("output/figures/p_agegroup_q.png", p_agegroup_q)
@@ -83,6 +99,8 @@ ggsave("output/figures/p_charges_hist.png", p_charges_hist)
 ggsave("output/figures/p_charges_vs_age.png", p_charges_vs_age)
 ggsave("output/figures/p_charges_bmi.png", p_charges_bmi)
 ggsave("output/figures/p_agegroup_charges_hist.png", p_agegroup_charges_hist)
+ggsave("output/figures/p_charges_chronic.png", p_charges_chronic)
+ggsave("output/figures/p_prior_claims_charges.png", p_prior_claims_charges)
 print(p_customers_q)
 print(p_agegroup_q)
 print(mean_charges_agegroup)
@@ -94,11 +112,9 @@ print(p_charges_vs_age)
 print(p_charges_hist)
 print(p_charges_bmi)
 print(p_agegroup_charges_hist)
+print(p_charges_chronic)
 print(smoker_charges_boxplot)
-
-
-
-
+print(p_prior_claims_charges)
 
 
 
