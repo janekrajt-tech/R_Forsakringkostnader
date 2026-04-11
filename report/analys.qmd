@@ -75,8 +75,9 @@ Resultat tyder på att variabler som rökning, bmi, ålder samt tidigare claims 
 
 ## Regressionanalys
 
-Variabler som verkar ha tydligast samband med försäkringkostnader är framför allt rökning och kronisk sjukdom. Tidigare claims har också en tydlig påverkan, där varje tidigare claim ökar kostanden med ungefär 1090, givet att övriga variabler hålls konstanta. Dessutom har variabler som ålder, bmi positiva men mindre effekter på kostnaderna. Modellens förklaringsgrad (r2) är 0.71. Alla variabler är statistiskt signifikanta. Modellen missar i snitt \~ 2500. Jag har även gjort en till enklare modell som innehåller variabler som ålder, bmi och risk_score med syfte att skapa en mer kompakt modell som sammanfattar flera faktorer. Den ursprungliga modellen (r_model) anses vara bättre än den andra modellen med risk_score, för att den inkluderar de enskila varaibler separat som gör det enklare att förstå och se tydligt vilka faktorer som har störst samband med försäkringskostnader. Den usprungliga modellen har även högre förklaringsgrad med ungefär 20%.
-Risk_score modellen är enklare och mer kompakt men vår första modell är mer tolkbar.
+Variabler som verkar ha tydligast samband med försäkringkostnader är framför allt rökning och kronisk sjukdom. Tidigare claims har också en tydlig påverkan, där varje tidigare claim ökar kostanden med ungefär 1090, givet att övriga variabler hålls konstanta. Dessutom har variabler som ålder, bmi positiva men mindre effekter på kostnaderna. Modellens förklaringsgrad (r2) är 0.71. Alla variabler är statistiskt signifikanta. Modellen missar i snitt \~ 2500. Jag har även gjort en till enklare modell som innehåller variabler som ålder, bmi och risk_score med syfte att skapa en mer kompakt modell som sammanfattar flera faktorer. Den ursprungliga modellen (r_model) anses vara bättre än den andra modellen med risk_score, för att den inkluderar de enskilda variabler separat som gör det enklare att förstå och se tydligt vilka faktorer som har störst samband med försäkringskostnader. Den usprungliga modellen har även högre förklaringsgrad med ungefär 20%.
+Risk_score modellen är enklare och mer kompakt men vår första modell är mer tolkbar. Modellen (r_model) fångar de viktigaste hälsorelaterade faktorer vilket gör att en stor del av variationen kan förklaras. Vår modell missar andra faktorer som exempelvis livsstil, kost etc. Detta förklarar varför modellen inte når högre förklaringsvärde.
+
 
 ## Slutsatser
 
@@ -85,3 +86,10 @@ Analysen visar att rökning och kronisk sjukdom har de starkaste sambanden med f
 ## Begränsningar
 
 Begränsningar som modellen kan innehålla är att den inkluderar inte alla faktorer. Modellen tar inte hänsyn till samspel mellan variabler. Den förklarar bara 71% av variationen, som innebär att en del variation är fortfarande oklar. Datat har outliers som kan påverka modellen. Modellen visar samband men kan inte fastställa orsaksamband.
+
+## Möjliga förbättringar 
+
+En av de möjliga förbättringarna är att inkludera fler faktorer som hade ökat modellens komplexitet, men det hade inte bidragit till någon speciell förbättring i förklaringsgraden. Att inkludera fler variabler kan också göra det svårare att tolka modellen och vi riskerar överanpassning. Den andra möjliga förbättringen är att undersöka interationer mellan variablerna. En annan förbättring till analysen är att skapa mer avancerade variabler eller kategoriseringar. Dessutom en större mängd data skulle kunna ge mer tillförlitliga resultat.
+
+## Självreflektion
+
