@@ -24,7 +24,7 @@ Analysen baseras på ett dataset med information om individer, inklusive ålder,
 p_charges_hist
 ```
 
-Histogram över charges visar
+Histogrammet visar en högerskev fördelning där majoriteten av kostnaderna ligger mellan 5 000 och 15 000, medan ett fåtal observationer har mycket höga värden. Detta indikerar förekomst av outliers och att fördelningen inte är normal.
 
 ```{r}
 p_charges_vs_age
@@ -36,7 +36,7 @@ Det finns ett positivt samband mellan ålder och försäkringskostnader, där ä
 p_charges_bmi
 ```
 
-Högre BMI verkar vara kopplat till högre kostnader, men sambandet är inte lika tydligt som för ålder och det finns stor spridning i datan.
+Högre BMI uppvisar ett samband med högre kostnader, men sambandet är inte lika tydligt som för ålder och det finns stor spridning i datasetet.
 
 ```{r}
 smoker_charges_boxplot
@@ -55,7 +55,7 @@ mean_charges_region
 mean_charges_sex
 ```
 
-Tabllerna visar mean charges per region och kön. Det finns inga tydliga skillnader i både regionerna och i kön, vilket tyder på att geografiskt region eller kön inte har en stor påverkan på försäkringkostnader.
+Tabellerna visar mean charges per region och kön. Det finns inga tydliga skillnader i både regionerna och i kön. Detta kan indikera på att geografiskt region eller kön inte har en stor påverkan på försäkringkostnader.
 
 ```{r}
 p_prior_claims_charges
@@ -71,12 +71,17 @@ Kunder som har kronisk sjukdom har tydligt större försäkringskostnader än de
 
 ## Sammanfattning till Resultat
 
-Resultat tyder på att variabler som rökning, bmi, ålder samt tidigare claims och kronisk sjukdom är särskilt interessanta för vidare undersökning i regressionsanalysen.
+Resultat tyder på att variabler som rökning, bmi, ålder samt tidigare claims och kronisk sjukdom är särskilt intressanta för vidare undersökning i regressionsanalysen.
 
 ## Regressionanalys
 
-Variabler som verkar ha tydligast samband med försäkringkostnader är framför allt rökning och kronisk sjukdom. Tidigare claims har occkså en tydlig påverkan, där varje tidigare claim ökar kostanden med 1090. Dessutom har variabler som ålder, bmi positiva men mindre effekter på kostnaderna. Modellen förklarar 71% av variationen i försäkringkostnader. Alla variabler är statistiskt signifikanta. Modellen missar i snitt \~2500. Begränsningar som modellen kan innehålla är att den inkluderar inte alla faktorer. Modellen tar inte hänsyn till samspel mellan variabler. Den förklarar bara 71% av variationen, som innebär att en del variation är fortfarande oklar. Datat har outliers som kan påverka modellen. Modellen visar samband men kan inte fastställa orsaksamband.
+Variabler som verkar ha tydligast samband med försäkringkostnader är framför allt rökning och kronisk sjukdom. Tidigare claims har också en tydlig påverkan, där varje tidigare claim ökar kostanden med ungefär 1090, givet att övriga variabler hålls konstanta. Dessutom har variabler som ålder, bmi positiva men mindre effekter på kostnaderna. Modellens förklaringsgrad (r2) är 0.71. Alla variabler är statistiskt signifikanta. Modellen missar i snitt \~ 2500. Jag har även gjort en till enklare modell som innehåller variabler som ålder, bmi och risk_score med syfte att skapa en mer kompakt modell som sammanfattar flera faktorer. Den ursprungliga modellen (r_model) anses vara bättre än den andra modellen med risk_score, för att den inkluderar de enskila varaibler separat som gör det enklare att förstå och se tydligt vilka faktorer som har störst samband med försäkringskostnader. Den usprungliga modellen har även högre förklaringsgrad med ungefär 20%.
+Risk_score modellen är enklare och mer kompakt men vår första modell är mer tolkbar.
 
 ## Slutsatser
 
+Analysen visar att rökning och kronisk sjukdom har de starkaste sambanden med försäkringskostnader. Även tidigare claims har en tydlig påverkan, medan ålder och BMI uppvisar positiva men svagare samband. Regressionsmodellen bekräftar dessa resultat och förklarar cirka 71 % av variationen i kostnaderna. Sammantaget tyder resultaten på att både hälsotillstånd och livsstilsfaktorer är centrala för att förstå variationen i försäkringskostnader.
+
 ## Begränsningar
+
+Begränsningar som modellen kan innehålla är att den inkluderar inte alla faktorer. Modellen tar inte hänsyn till samspel mellan variabler. Den förklarar bara 71% av variationen, som innebär att en del variation är fortfarande oklar. Datat har outliers som kan påverka modellen. Modellen visar samband men kan inte fastställa orsaksamband.
