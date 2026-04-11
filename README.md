@@ -4,10 +4,13 @@ Projektet analyserar vilka faktorer som påverkar försäkringskostnader
 (charges) med hjälp av ett dataset innehållande variabler som ålder,
 BMI, rökning och hälsa.
 
-## Frågeställningar Vilka variabler påverkar kostnader mest?
+## Frågeställningar 
 
-Finns skillnader mellan grupper (t.ex. rökare vs icke-rökare)? Hur väl
-kan en regressionsmodell förklara kostnader?
+Vilka variabler påverkar kostnader mest?
+
+Finns skillnader mellan grupper (t.ex. rökare vs icke-rökare)? 
+
+Hur väl kan en regressionsmodell förklara kostnader?
 
 ## Struktur
 
