@@ -3,11 +3,11 @@ title: "analys"
 format: html
 ---
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE} 
-source("../scripts/01_load_data.R")
-source("../scripts/02_data_clean.R")
-source("../scripts/03_analysis.R")
-source("../scripts/04_model.R")
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+invisible(source("../scripts/01_load_data.R"))
+invisible(source("../scripts/02_data_clean.R"))
+invisible(source("../scripts/03_analysis.R"))
+invisible(source("../scripts/04_model.R"))
 ```
 
 ## Syfte
@@ -75,7 +75,7 @@ Resultat tyder på att variabler som rökning, BMI, ålder samt tidigare claims 
 
 ## Regressionanalys
 
-Variabler som verkar ha tydligast samband med försäkringkostnader är framför allt rökning och kronisk sjukdom vilket tyder på att hälsorelaterade faktorer är de största drivkrafterna för försäkringkostnader. Tidigare claims har också en tydlig påverkan, där varje tidigare claim ökar kostanden med ungefär 1090, givet att övriga variabler hålls konstanta, vilket tyder på att tidigare skdeärenden är en viktig faktor för framtida kostnader. Dessutom har variabler som ålder, bmi positiva men mindre effekter på kostnaderna. Modellens förklaringsgrad (r2) är 0.71. Alla variabler är statistiskt signifikanta. Modellen missar i snitt ~ 2500 vilket visar att även om modellen är ganska träffsäker finns det fortfarande en del av variationen som inte förklaras. Jag har även gjort en till enklare modell som innehåller variabler som ålder, bmi och risk_score med syfte att skapa en mer kompakt modell som sammanfattar flera faktorer. Den ursprungliga modellen (r_model) anses vara bättre än den andra modellen med risk_score, för att den inkluderar de enskilda variabler separat som gör det enklare att förstå och se tydligt vilka faktorer som har störst samband med försäkringskostnader. Den usprungliga modellen har även högre förklaringsgrad med ungefär 20%. Risk_score modellen är enklare och mer kompakt men vår första modell är mer tolkbar. Modellen (r_model) fångar de viktigaste hälsorelaterade faktorer vilket gör att en stor del av variationen kan förklaras. Vår modell missar andra faktorer som exempelvis en del av livsstil, kost etc. Detta förklarar varför modellen inte når högre förklaringsvärde.
+Variabler som verkar ha tydligast samband med försäkringkostnader är framför allt rökning och kronisk sjukdom vilket tyder på att hälsorelaterade faktorer är de största drivkrafterna för försäkringkostnader. Tidigare claims har också en tydlig påverkan, där varje tidigare claim ökar kostanden med ungefär 1090, givet att övriga variabler hålls konstanta, vilket tyder på att tidigare skdeärenden är en viktig faktor för framtida kostnader. Dessutom har variabler som ålder, bmi positiva men mindre effekter på kostnaderna. Modellens förklaringsgrad (r2) är 0.71. Alla variabler är statistiskt signifikanta. Modellen missar i snitt \~ 2500 vilket visar att även om modellen är ganska träffsäker finns det fortfarande en del av variationen som inte förklaras. Jag har även gjort en till enklare modell som innehåller variabler som ålder, bmi och risk_score med syfte att skapa en mer kompakt modell som sammanfattar flera faktorer. Den ursprungliga modellen (r_model) anses vara bättre än den andra modellen med risk_score, för att den inkluderar de enskilda variabler separat som gör det enklare att förstå och se tydligt vilka faktorer som har störst samband med försäkringskostnader. Den usprungliga modellen har även högre förklaringsgrad med ungefär 20%. Risk_score modellen är enklare och mer kompakt men vår första modell är mer tolkbar. Modellen (r_model) fångar de viktigaste hälsorelaterade faktorer vilket gör att en stor del av variationen kan förklaras. Vår modell missar andra faktorer som exempelvis en del av livsstil, kost etc. Detta förklarar varför modellen inte når högre förklaringsvärde.
 
 ## Slutsatser
 
@@ -93,7 +93,7 @@ En av de möjliga förbättringarna är att inkludera fler faktorer som hade ök
 
 Vad tycker du att du gjorde bra i uppgiften?
 
-Det jag tyckte att jag gjorde bra i uppgiften är att jag undersökte vilka faktorer som kan ha stor påverkan på försäkringskostnader och sedan fokuserat på dem i nästa steg. 
+Det jag tyckte att jag gjorde bra i uppgiften är att jag undersökte vilka faktorer som kan ha stor påverkan på försäkringskostnader och sedan fokuserat på dem i nästa steg.
 
 Vad var svårast?
 
@@ -101,21 +101,8 @@ Det jag tyckte att var svårast var att välja mina visualiseringar och att diku
 
 Vilket betyg tycker du att din inlämning motsvarar, G eller VG?
 
-Jag tycker att inlämningen motsvarar VG. 
+Jag tycker att inlämningen motsvarar VG.
 
 Motivera kort genom att hänvisa till vilka krav i uppgiften du tycker att du uppfyllt.
 
 Analysen uppfyller kraven i uppgiften genom att datasetet har undersökts, städats och förberetts på ett strukturerat sätt. En beskrivande analys har genomförts med relevanta visualiseringar och tabeller som visar hur försäkringskostnader är fördelade och hur de skiljer sig mellan olika grupper. Vidare har minst en regressionsmodell byggts där relevanta prediktorer valts och motiverats utifrån den beskrivande analysen. Resultaten har tolkats och kopplats till verkliga samband, och modellens förklaringsgrad samt signifikans har diskuterats. Utöver detta har två modellvarianter jämförts och motiverats, där den slutliga modellen valts utifrån tolkbarhet och förklaringsförmåga. Analysen innehåller även en diskussion kring modellens begränsningar samt möjliga förbättringar, vilket visar på ett kritiskt och självständigt resonemang
-
-
-
-
-
-
-
-
-
-
-
-
-
