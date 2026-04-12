@@ -3,7 +3,7 @@ title: "analys"
 format: html
 ---
 
-```{r, echo=FALSE} 
+```{r, echo=FALSE, message=FALSE, warning=FALSE} 
 source("../scripts/01_load_data.R")
 source("../scripts/02_data_clean.R")
 source("../scripts/03_analysis.R")
