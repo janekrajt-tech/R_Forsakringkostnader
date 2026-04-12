@@ -1,6 +1,6 @@
 library(tidyverse)
-
-data <- read.csv("data/insurance_costs.csv")
+library(here)
+data <- read.csv(here("data", "insurance_costs.csv"))
 
 glimpse(data)
 
