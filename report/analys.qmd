@@ -1,9 +1,13 @@
 ---
-title: "analys"
-format: html
+title: "Analys av försäkringskostnader"
+format:
+  html:
+    theme: simplex
+    toc: true
+    number-sections: true
 ---
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 invisible(source("../scripts/01_load_data.R"))
 invisible(source("../scripts/02_data_clean.R"))
 invisible(source("../scripts/03_analysis.R"))
@@ -71,19 +75,38 @@ Kunder som har kronisk sjukdom har tydligt större försäkringskostnader än de
 
 ## Sammanfattning till Resultat
 
-Resultat tyder på att variabler som rökning, BMI, ålder samt tidigare claims och kronisk sjukdom är särskilt intressanta för vidare undersökning i regressionsanalysen, vilklet indikerar att hälsotillstånd och tidigare riskhistorik har centralt roll för försäkringskostnader.
+Resultat tyder på att variabler som rökning, kronisk sjukdom, tidigare claims samt BMI och ålde är särskilt intressanta för vidare undersökning i regressionsanalysen, vilket indikerar att hälsotillstånd och tidigare riskhistorik har centralt roll för försäkringskostnader.
 
 ## Regressionanalys
 
-Variabler som verkar ha tydligast samband med försäkringkostnader är framför allt rökning och kronisk sjukdom vilket tyder på att hälsorelaterade faktorer är de största drivkrafterna för försäkringkostnader. Tidigare claims har också en tydlig påverkan, där varje tidigare claim ökar kostanden med ungefär 1090, givet att övriga variabler hålls konstanta, vilket tyder på att tidigare skdeärenden är en viktig faktor för framtida kostnader. Dessutom har variabler som ålder, bmi positiva men mindre effekter på kostnaderna. Modellens förklaringsgrad (r2) är 0.71. Alla variabler är statistiskt signifikanta. Modellen missar i snitt \~ 2500 vilket visar att även om modellen är ganska träffsäker finns det fortfarande en del av variationen som inte förklaras. Jag har även gjort en till enklare modell som innehåller variabler som ålder, bmi och risk_score med syfte att skapa en mer kompakt modell som sammanfattar flera faktorer. Den ursprungliga modellen (r_model) anses vara bättre än den andra modellen med risk_score, för att den inkluderar de enskilda variabler separat som gör det enklare att förstå och se tydligt vilka faktorer som har störst samband med försäkringskostnader. Den usprungliga modellen har även högre förklaringsgrad med ungefär 20%. Risk_score modellen är enklare och mer kompakt men vår första modell är mer tolkbar. Modellen (r_model) fångar de viktigaste hälsorelaterade faktorer vilket gör att en stor del av variationen kan förklaras. Vår modell missar andra faktorer som exempelvis en del av livsstil, kost etc. Detta förklarar varför modellen inte når högre förklaringsvärde.
+```{r}
+model_comparison
+```
 
-## Slutsatser
-
-Analysen visar att rökning och kronisk sjukdom har de starkaste sambanden med försäkringskostnader. Även tidigare claims har en tydlig påverkan, medan ålder och BMI uppvisar positiva men svagare samband. Regressionsmodellen bekräftar dessa resultat och förklarar cirka 71 % av variationen i kostnaderna. Sammantaget tyder resultaten på att både hälsotillstånd och livsstilsfaktorer är centrala för att förstå variationen i försäkringskostnader vilket visar att de bör prioriteras i framtida analyser.
+Variabler som verkar ha tydligast samband med försäkringkostnader är framför allt rökning och kronisk sjukdom vilket tyder på att hälsorelaterade faktorer är de största drivkrafterna för försäkringkostnader. Tidigare claims har en tydlig påverkan på försäkringskostander. Dessutom har age och BMI en mindre men fortfarande tydlig påverkan. Samtliga variabler är statistiskt signifikanta vilket innebär att sambanden är tillförlitliga. Resultaten verkar rimliga då är rökning och kronisk sjukdom viktiga faktorer som är kopplade till hälsoproblem som ökar risk för hälsoproblem som kan sen leda till högre försäkringskostnader. Tidigare claims verkar också vara rimlig, eftersom historik används ofta som indikator på risk. Även andra faktorer såsom ålder och BMI verkar vara rimliga, då dessa faktorer påverkar hälsa, men inte lika starkt som rökning.
 
 ## Begränsningar
 
-Begränsningar som modellen kan innehålla är att den inkluderar inte alla faktorer som påverkar försäkringskostnader som t.ex mer detaljerade livstilfaktorer vilket begränsar dess förklaringsförmåga. Modellen tar inte hänsyn till samspel mellan variabler. Den förklarar bara 71% av variationen, som innebär att en del variation är fortfarande oklar. Datat har outliers som kan påverka modellen. Modellen visar samband men kan inte fastställa orsaksamband.
+Modellen har flera begränsningar. Den inkluderar inte alla faktorer som påverkar försäkringskostnader, exempelvis livsstil eller kost. Vidare antar modellen linjära samband mellan variablerna och kostnaderna, vilket kan vara en förenkling av verkligheten. Residualanalysen visar också att modellen har svårare att exakt förutsäga höga kostnader, vilket tyder på att viss variation inte fångas. Slutligen visar modellen samband men kan inte fastställa orsakssamband.
+
+```{r}
+qqnorm(resid(model_3))
+qqline(resid(model_3), col = "red")
+```
+
+```{r}
+act_vs_pred
+```
+
+## Slutsatser
+
+Slutligen faktorer som verkar ha tydligast samband med försäkringskostnader är rökning och kronisk sjukdom vilket betyder att hälsorelaterade faktorer verkar ha tydligast samband. Andra tydliga men inte lika tydliga som rökning och kronisk sjukdom är tidigare claims, samt ålder och BMI. Modellen förklarar ungefär 71% av variationen i kostnader vilket innebär att de viktigaste kostnader fångas. Spridningen i residualerna visar att modellen är inte perfekt, speciellt vid högre kostnader.
+
+Modellen fångar inte alla faktorer som påverkar försäkringskostnader. Exempelvis saknas mer detaljerade livsstilsfaktorer eller kost. Vidare visar residualanalysen att modellen har svårare att förutsäga höga kostnader, vilket tyder på att extrema värden inte förklaras fullt ut. Modellen antar också linjära samband, vilket kan vara en förenkling av verkligheten.
+
+```{r}
+act_res_diff
+```
 
 ## Möjliga förbättringar
 
