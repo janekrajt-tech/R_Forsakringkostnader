@@ -83,7 +83,7 @@ Resultat tyder på att variabler som rökning, kronisk sjukdom, tidigare claims 
 model_comparison
 ```
 
-Variabler som verkar ha tydligast samband med försäkringkostnader är framför allt rökning och kronisk sjukdom vilket tyder på att hälsorelaterade faktorer är de största drivkrafterna för försäkringkostnader. Tidigare claims har en tydlig påverkan på försäkringskostander. Dessutom har age och BMI en mindre men fortfarande tydlig påverkan. Samtliga variabler är statistiskt signifikanta vilket innebär att sambanden är tillförlitliga. Resultaten verkar rimliga då är rökning och kronisk sjukdom viktiga faktorer som är kopplade till hälsoproblem som ökar risk för hälsoproblem som kan sen leda till högre försäkringskostnader. Tidigare claims verkar också vara rimlig, eftersom historik används ofta som indikator på risk. Även andra faktorer såsom ålder och BMI verkar vara rimliga, då dessa faktorer påverkar hälsa, men inte lika starkt som rökning.
+Variabler som verkar ha tydligast samband med försäkringkostnader är framför allt rökning och kronisk sjukdom vilket tyder på att hälsorelaterade faktorer är de största drivkrafterna för försäkringkostnader. Tidigare claims har en tydlig påverkan på försäkringskostander. Dessutom har age och BMI en mindre men fortfarande tydlig påverkan. Samtliga variabler är statistiskt signifikanta vilket innebär att sambanden är tillförlitliga. Resultaten verkar rimliga då är rökning och kronisk sjukdom viktiga faktorer som är kopplade till hälsoproblem som ökar risk för hälsoproblem som kan sen leda till högre försäkringskostnader. Tidigare claims verkar också vara rimlig, eftersom historik används ofta som indikator på risk. Även andra faktorer såsom ålder och BMI verkar vara rimliga, då dessa faktorer påverkar hälsa, men inte lika starkt som rökning. Effekten av rökning är betydligt större än övriga variabler, vilket tyder på att denna faktor är den mest avgörande i modellen.
 
 ## Begränsningar
 
@@ -110,7 +110,7 @@ act_res_diff
 
 ## Möjliga förbättringar
 
-En av de möjliga förbättringarna är att inkludera fler faktorer som hade ökat modellens komplexitet, men det hade inte bidragit till någon speciell förbättring i förklaringsgraden. Att inkludera fler variabler kan också göra det svårare att tolka modellen och vi riskerar överanpassning. Den andra möjliga förbättringen är att undersöka interaktioner mellan variablerna. En annan förbättring till analysen är att skapa mer avancerade variabler eller kategoriseringar. Dessutom en större mängd data skulle kunna ge mer tillförlitliga resultat.
+En av de möjliga förbättringarna är att inkludera fler faktorer kan bidra till förbättring, men riskerar att göra modellen svårare att tolka och kan riskera överanapassning. Den andra möjliga förbättringen är att undersöka interaktioner mellan variablerna. En annan förbättring till analysen är att skapa mer avancerade variabler eller kategoriseringar. Dessutom en större mängd data skulle kunna ge mer tillförlitliga resultat.
 
 ## Självreflektion
 
@@ -120,7 +120,7 @@ Det jag tyckte att jag gjorde bra i uppgiften är att jag undersökte vilka fakt
 
 Vad var svårast?
 
-Det jag tyckte att var svårast var att välja mina visualiseringar och att dikutera och motivera mina val på ett tolkningsbar sätt.
+Det jag tyckte att var svårast var att välja mina visualiseringar och att diskutera och motivera mina val på ett tolkningsbar sätt.
 
 Vilket betyg tycker du att din inlämning motsvarar, G eller VG?
 
