@@ -54,7 +54,7 @@ output/figures/
 
 # Quarto output
 report/*_files/
-
+report/*_html
 
 # R temp files
 .Rhistory
