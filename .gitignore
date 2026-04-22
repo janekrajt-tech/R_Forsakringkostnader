@@ -48,4 +48,15 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
+# Output
 output/figures/
+
+
+# Quarto output
+report/*_files/
+
+
+# R temp files
+.Rhistory
+.RData
+.Rproj.user/
