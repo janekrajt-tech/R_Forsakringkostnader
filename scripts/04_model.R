@@ -36,19 +36,19 @@ model_comparison <- tibble(
 
 model_comparison
 
-model_3_diagnotics <- data_clean %>% 
+model_3_diagnostics <- data_clean %>% 
   mutate(
     fitted_value = fitted(model_3),
     residual = resid(model_3)
   )
 
 
-act_res_diff <- model_3_diagnotics %>% 
+act_res_diff <- model_3_diagnostics %>% 
   select(charges, fitted_value, residual) %>% 
   slice_head(n = 10)
 
 
-act_vs_pred <- ggplot(model_3_diagnotics, aes(x = fitted_value, y = charges)) +
+act_vs_pred <- ggplot(model_3_diagnostics, aes(x = fitted_value, y = charges)) +
   geom_point(alpha = 0.5) +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "red") +
   labs(
