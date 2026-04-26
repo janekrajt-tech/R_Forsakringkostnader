@@ -59,13 +59,13 @@ mean_charges_region
 mean_charges_sex
 ```
 
-Tabellerna visar mean charges per region och kön. Det finns inga tydliga skillnader i både regionerna och i kön. Detta kan indikera att geografiskt region eller kön inte har en stor påverkan på försäkringskostnader.
+Tabellerna visar mean charges per region och kön. Det finns inga tydliga skillnader i både regionerna och i kön. Detta kan indikera att geografisk region eller kön inte har en stor påverkan på försäkringskostnader.
 
 ```{r}
 p_prior_claims_charges
 ```
 
-Antal tidigare claims har tydligt påverkan på charges.
+Antal tidigare claims har en tydlig påverkan på försäkringskostnader.
 
 ```{r}
 p_charges_chronic
@@ -75,7 +75,7 @@ Kunder som har kronisk sjukdom har tydligt större försäkringskostnader än de
 
 ## Sammanfattning till Resultat
 
-Resultat tyder på att variabler som rökning, kronisk sjukdom, tidigare claims samt BMI och ålder är särskilt intressanta för vidare undersökning i regressionsanalysen, vilket indikerar att hälsotillstånd och tidigare riskhistorik har en central roll för försäkringskostnader.
+Resultaten tyder på att variabler som rökning, kronisk sjukdom, tidigare claims samt BMI och ålder är särskilt intressanta för vidare undersökning i regressionsanalysen, vilket indikerar att hälsotillstånd och tidigare riskhistorik har en central roll för försäkringskostnader. Dessa resultat ligger till grund för valet av variabler i regressionsmodellen.
 
 ## Regressionanalys
 
@@ -83,7 +83,7 @@ Resultat tyder på att variabler som rökning, kronisk sjukdom, tidigare claims 
 model_comparison
 ```
 
-Variabler som verkar ha tydligast samband med försäkringskostnader är framför allt rökning och kronisk sjukdom vilket tyder på att hälsorelaterade faktorer är de största drivkrafterna för försäkringskostnader. Tidigare claims har en tydlig påverkan på försäkringskostander. Dessutom har age och BMI en mindre men fortfarande tydlig påverkan. Samtliga variabler är statistiskt signifikanta vilket innebär att sambanden är tillförlitliga. Resultaten verkar rimliga då är rökning och kronisk sjukdom viktiga faktorer som är kopplade till hälsoproblem som ökar risk för hälsoproblem som kan sen leda till högre försäkringskostnader. Tidigare claims verkar också vara rimlig, eftersom historik används ofta som indikator på risk. Även andra faktorer såsom ålder och BMI verkar vara rimliga, då dessa faktorer påverkar hälsa, men inte lika starkt som rökning. Effekten av rökning är betydligt större än övriga variabler, vilket tyder på att denna faktor är den mest avgörande i modellen.
+Variabler som verkar ha tydligast samband med försäkringskostnader är framför allt rökning och kronisk sjukdom vilket tyder på att hälsorelaterade faktorer är de största drivkrafterna för försäkringskostnader. Tidigare claims har en tydlig påverkan på försäkringskostnader. Dessutom har age och BMI en mindre men fortfarande tydlig påverkan. Samtliga variabler är statistiskt signifikanta vilket innebär att sambanden är tillförlitliga. Resultaten verkar rimliga då rökning och kronisk sjukdom är viktiga faktorer som är kopplade till hälsoproblem som ökar risk för hälsoproblem som kan sen leda till högre försäkringskostnader. Tidigare claims verkar också vara rimlig, eftersom historik används ofta som indikator på risk. Även andra faktorer såsom ålder och BMI verkar vara rimliga, då dessa faktorer påverkar hälsa, men inte lika starkt som rökning. Effekten av rökning är betydligt större än övriga variabler, vilket tyder på att denna faktor är den mest avgörande i modellen.
 
 ## Begränsningar
 
@@ -100,7 +100,7 @@ act_vs_pred
 
 ## Slutsatser
 
-Slutligen faktorer som verkar ha tydligast samband med försäkringskostnader är rökning och kronisk sjukdom vilket betyder att hälsorelaterade faktorer verkar ha tydligast samband. Andra tydliga men inte lika tydliga som rökning och kronisk sjukdom är tidigare claims, samt ålder och BMI. Modellen förklarar ungefär 71% av variationen i kostnader vilket innebär att de viktigaste kostnader fångas. Spridningen i residualerna visar att modellen är inte perfekt, speciellt vid högre kostnader.
+Slutligen faktorer som verkar ha tydligast samband med försäkringskostnader är rökning och kronisk sjukdom vilket betyder att hälsorelaterade faktorer verkar ha tydligast samband. Andra tydliga men inte lika tydliga som rökning och kronisk sjukdom är tidigare claims, samt ålder och BMI. Modellen förklarar ungefär 71% av variationen i kostnader vilket innebär att de viktigaste variationerna i  kostnader fångas. Spridningen i residualerna visar att modellen är inte perfekt, speciellt vid högre kostnader.
 
 Modellen fångar inte alla faktorer som påverkar försäkringskostnader. Exempelvis saknas mer detaljerade livsstilsfaktorer eller kost. Vidare visar residualanalysen att modellen har svårare att förutsäga höga kostnader, vilket tyder på att extrema värden inte förklaras fullt ut. Modellen antar också linjära samband, vilket kan vara en förenkling av verkligheten.
 
@@ -110,7 +110,7 @@ act_res_diff
 
 ## Möjliga förbättringar
 
-En av de möjliga förbättringarna är att inkludera fler faktorer kan bidra till förbättring, men riskerar att göra modellen svårare att tolka och kan riskera överanpassning. Den andra möjliga förbättringen är att undersöka interaktioner mellan variablerna. En annan förbättring till analysen är att skapa mer avancerade variabler eller kategoriseringar. Dessutom en större mängd data skulle kunna ge mer tillförlitliga resultat.
+En av de möjliga förbättringarna är att inkludera fler faktorer, vilket kan bidra till förbättring, men riskerar att göra modellen svårare att tolka och kan riskera överanpassning. Den andra möjliga förbättringen är att undersöka interaktioner mellan variablerna. En annan förbättring till analysen är att skapa mer avancerade variabler eller kategoriseringar. Dessutom en större mängd data skulle kunna ge mer tillförlitliga resultat.
 
 ## Självreflektion
 
